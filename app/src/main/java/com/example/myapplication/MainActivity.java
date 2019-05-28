@@ -13,16 +13,20 @@ import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Random;
+
 public class MainActivity extends AppWidgetProvider {
+
+    final String Day[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+
+    final String Months[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+
+
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        //for(int i=0; i<appWidgetIds.length; i++){
+     /*   //for(int i=0; i<appWidgetIds.length; i++){
 
-            View.OnClickListener onClickListener=new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-            };
 
             int currentWidgetId = appWidgetIds[0];
             String url = "https://www.accuweather.com/en/in/india-weather";
@@ -38,9 +42,40 @@ public class MainActivity extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(currentWidgetId,views);
             Toast.makeText(context, "widget added", Toast.LENGTH_SHORT).show();
 
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),R.layout.activity_main);
+            remoteViews.setTextViewText(R.id.button, "Set button text here");
 
 
 
-        //}
+        //}*/
+
+            for (int i = 0; i < appWidgetIds.length; i++) {
+                    int widgetId = appWidgetIds[i];
+                    String number = (new Random().nextInt(80) - 30)+" C";
+
+Calendar calendar=Calendar.getInstance();
+String date= Day[calendar.get(Calendar.DAY_OF_WEEK)]+"  "+calendar.get(Calendar.DATE)+"  "+Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
+
+
+
+
+                    RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+                            R.layout.activity_main);
+                    remoteViews.setTextViewText(R.id.textView, date);
+
+                RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
+                        R.layout.activity_main);
+                remoteViews2.setTextViewText(R.id.textView3, number);
+
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);                         //Source Android Authority
+                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+                            0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    remoteViews.setOnClickPendingIntent(R.id.textView, pendingIntent);
+                    appWidgetManager.updateAppWidget(widgetId, remoteViews);
+            }
+
+
     }
 }

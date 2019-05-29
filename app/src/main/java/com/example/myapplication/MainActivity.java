@@ -50,15 +50,16 @@ public class MainActivity extends AppWidgetProvider {
 
         //}*/
 
-        int theme=1;
+        int theme=2;
         RemoteViews date;
+        RemoteViews temp;
 
 
         for (int widgetId : appWidgetIds) {
 
             switch (theme)
             {
-                case 0:
+                case 0://Pixel 3
 
 
 
@@ -86,24 +87,63 @@ public class MainActivity extends AppWidgetProvider {
                 case 1:   //onePlus v1
 
                     RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.one_plus_v1);
+                    temp = new RemoteViews(context.getPackageName(),R.layout.one_plus_v1);
 
-                     date = new RemoteViews(context.getPackageName(),
+
+
+
+                    date = new RemoteViews(context.getPackageName(),
                             R.layout.one_plus_v1);
                     date.setTextViewText(R.id.onePlusDate, getDate());
+                    temp.setTextViewText(R.id.onePlusV1Temp,getTemp());
+
+
                     //date.setTextColor(R.id.onePlusDate,);
 
 
                     appWidgetManager.updateAppWidget(widgetId,views);
                     appWidgetManager.updateAppWidget(widgetId,date);
+                    appWidgetManager.updateAppWidget(widgetId,temp);
+
 
 
                     break;
+
+                case 2:   //onePlus v2
+
+                    temp = new RemoteViews(context.getPackageName(),R.layout.one_plus_v2);
+
+                    date = new RemoteViews(context.getPackageName(),
+                            R.layout.one_plus_v2);
+                    date.setTextViewText(R.id.onePlusV2Date, getDateShort());
+                    temp.setTextViewText(R.id.onePlusV2Temp,getTemp());
+                    //date.setTextColor(R.id.onePlusDate,);
+
+
+                    appWidgetManager.updateAppWidget(widgetId,temp);
+                    appWidgetManager.updateAppWidget(widgetId,date);
+
+
+                    break;
+
+
             }
 
 
 
 
         }
+
+
+    }
+
+
+    String getDateShort()
+    {
+        Calendar calendar = Calendar.getInstance();
+        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[calendar.get(Calendar.DAY_OF_WEEK)].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
+        return date;
+
 
 
     }
@@ -119,7 +159,7 @@ public class MainActivity extends AppWidgetProvider {
     String getTemp()
     {
 
-        String temp = "  "+(new Random().nextInt(80) - 30) + " °C";
+        String temp = (new Random().nextInt(80) - 30) + " °C";
         return temp;
 
     }

@@ -11,9 +11,8 @@
         android:id="@+id/digitalclock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:format12Hour="@android:string/yes"
         android:text="df"
-        android:textColor="#AD1457"
+        android:textColor="#FFFFFF"
         android:textSize="60sp" />
 
 
@@ -21,10 +20,33 @@
         android:id="@+id/onePlusDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/digitalclock"
         android:layout_alignBottom="@id/digitalclock"
         android:layout_alignParentBottom="false"
-        android:layout_marginBottom="-32dp"
+        android:layout_marginBottom="-34dp"
         android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_below="@id/onePlusDate"
+        android:layout_alignLeft="@id/onePlusDate"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="35dp"
+        app:srcCompat="@drawable/clouds" />
+
+    <TextView
+        android:id="@+id/onePlusV1Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/onePlusDate"
+        android:layout_alignTop="@id/imageView2"
+        android:layout_toRightOf="@id/imageView2"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
         android:textSize="24sp" />
 </RelativeLayout>
 

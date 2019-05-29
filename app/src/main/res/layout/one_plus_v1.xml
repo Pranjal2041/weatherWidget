@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionGroup="true"
+    tools:context=".MainActivity">
+
+    <TextClock
+        android:id="@+id/digitalclock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format12Hour="@android:string/yes"
+        android:text="df"
+        android:textColor="#AD1457"
+        android:textSize="60sp" />
+
+
+    <TextView
+        android:id="@+id/onePlusDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/digitalclock"
+        android:layout_alignParentBottom="false"
+        android:layout_marginBottom="-32dp"
+        android:text="TextView"
+        android:textSize="24sp" />
+</RelativeLayout>
+

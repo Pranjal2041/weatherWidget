@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -49,33 +50,80 @@ public class MainActivity extends AppWidgetProvider {
 
         //}*/
 
-            for (int i = 0; i < appWidgetIds.length; i++) {
-                    int widgetId = appWidgetIds[i];
-                    String number = (new Random().nextInt(80) - 30)+" C";
-
-Calendar calendar=Calendar.getInstance();
-String date= Day[calendar.get(Calendar.DAY_OF_WEEK)]+"  "+calendar.get(Calendar.DATE)+"  "+Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
+        int theme=1;
+        RemoteViews date;
 
 
+        for (int widgetId : appWidgetIds) {
+
+            switch (theme)
+            {
+                case 0:
 
 
-                    RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+
+
+
+                    date = new RemoteViews(context.getPackageName(),
                             R.layout.activity_main);
-                    remoteViews.setTextViewText(R.id.textView, date);
+                    date.setTextViewText(R.id.textView, getDate());
 
-                RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
-                        R.layout.activity_main);
-                remoteViews2.setTextViewText(R.id.textView3, number);
+                    RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
+                            R.layout.activity_main);
+                    remoteViews2.setTextViewText(R.id.textView3, getTemp());
 
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);                         //Source Android Authority
                     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                             0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    remoteViews.setOnClickPendingIntent(R.id.textView, pendingIntent);
-                    appWidgetManager.updateAppWidget(widgetId, remoteViews);
+                    date.setOnClickPendingIntent(R.id.textView, pendingIntent);
+                    appWidgetManager.updateAppWidget(widgetId, date);
+                    appWidgetManager.updateAppWidget(widgetId, remoteViews2);
+
+                    break;
+
+                case 1:   //onePlus v1
+
+                    RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.one_plus_v1);
+
+                     date = new RemoteViews(context.getPackageName(),
+                            R.layout.one_plus_v1);
+                    date.setTextViewText(R.id.onePlusDate, getDate());
+                    //date.setTextColor(R.id.onePlusDate,);
+
+
+                    appWidgetManager.updateAppWidget(widgetId,views);
+                    appWidgetManager.updateAppWidget(widgetId,date);
+
+
+                    break;
             }
 
 
+
+
+        }
+
+
     }
+
+    String getDate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        String date = Day[calendar.get(Calendar.DAY_OF_WEEK)] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
+        return date;
+
+    }
+
+    String getTemp()
+    {
+
+        String temp = "  "+(new Random().nextInt(80) - 30) + " °C";
+        return temp;
+
+    }
+
+
+
 }

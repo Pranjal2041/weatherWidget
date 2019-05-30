@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/opslate_bold"
         android:textSize="30sp" />
 
     <TextView
@@ -23,5 +24,6 @@
         android:layout_below="@id/onePlusV2Date"
         android:text="TextView"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/opslate_bold"
         android:textSize="42sp" />
 </RelativeLayout>

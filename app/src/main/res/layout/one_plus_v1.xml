@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="df"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/opslate_bold"
         android:textSize="60sp" />
 
 
@@ -26,6 +27,7 @@
         android:layout_marginBottom="-34dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
+        android:fontFamily="@font/opslate_bold"
         android:textSize="30sp" />
 
     <ImageView
@@ -46,6 +48,7 @@
         android:layout_alignTop="@id/imageView2"
         android:layout_toRightOf="@id/imageView2"
         android:text="TextView"
+        android:fontFamily="@font/opslate_bold"
         android:textColor="#FFFFFF"
         android:textSize="24sp" />
 </RelativeLayout>

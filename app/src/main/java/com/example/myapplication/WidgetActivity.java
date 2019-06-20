@@ -5,23 +5,26 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Random;
 
-public class MainActivity extends AppWidgetProvider {
+public class WidgetActivity extends AppWidgetProvider {
 
     final String Day[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 
     final String Months[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
+
+    public static final String MyPREFERENCES = "MyPref" ;
+
+    SharedPreferences sharedpreferences;
+    String[] themes={"Pixel","OnePlus-1","OnePlus-2"};
+
+
 
 
 
@@ -50,7 +53,26 @@ public class MainActivity extends AppWidgetProvider {
 
         //}*/
 
-        int theme=2;
+     String theme="";
+
+
+
+
+         sharedpreferences=context.getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE);
+        try {
+             theme = sharedpreferences.getString("Theme", "");
+            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e)
+        {
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+            editor.putString("Theme",themes[0]);
+            editor.apply();
+            theme="Pixel";
+        }
+
+        Toast.makeText(context, "Current theme is "+theme, Toast.LENGTH_SHORT).show();
         RemoteViews date;
         RemoteViews temp;
 
@@ -59,21 +81,21 @@ public class MainActivity extends AppWidgetProvider {
 
             switch (theme)
             {
-                case 0://Pixel 3
+                case "Pixel"://Pixel 3
 
 
 
 
 
                     date = new RemoteViews(context.getPackageName(),
-                            R.layout.activity_main);
+                            R.layout.pixel_widget);
                     date.setTextViewText(R.id.textView, getDate());
 
                     RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
-                            R.layout.activity_main);
+                            R.layout.pixel_widget);
                     remoteViews2.setTextViewText(R.id.textView3, getTemp());
 
-                    Intent intent = new Intent(context, MainActivity.class);
+                    Intent intent = new Intent(context, WidgetActivity.class);
                     intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);                         //Source Android Authority
                     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
@@ -84,16 +106,16 @@ public class MainActivity extends AppWidgetProvider {
 
                     break;
 
-                case 1:   //onePlus v1
+                case "OnePlus-1":   //onePlus v1
 
-                    RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.one_plus_v1);
-                    temp = new RemoteViews(context.getPackageName(),R.layout.one_plus_v1);
+                    RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.op_v1_widget);
+                    temp = new RemoteViews(context.getPackageName(),R.layout.op_v1_widget);
 
 
 
 
                     date = new RemoteViews(context.getPackageName(),
-                            R.layout.one_plus_v1);
+                            R.layout.op_v1_widget);
                     date.setTextViewText(R.id.onePlusDate, getDate());
                     temp.setTextViewText(R.id.onePlusV1Temp,getTemp());
 
@@ -109,12 +131,12 @@ public class MainActivity extends AppWidgetProvider {
 
                     break;
 
-                case 2:   //onePlus v2
+                case "OnePlus-2":   //onePlus v2
 
-                    temp = new RemoteViews(context.getPackageName(),R.layout.one_plus_v2);
+                    temp = new RemoteViews(context.getPackageName(),R.layout.op_v2_widget);
 
                     date = new RemoteViews(context.getPackageName(),
-                            R.layout.one_plus_v2);
+                            R.layout.op_v2_widget);
                     date.setTextViewText(R.id.onePlusV2Date, getDateShort());
                     temp.setTextViewText(R.id.onePlusV2Temp,getTemp());
                     //date.setTextColor(R.id.onePlusDate,);
@@ -125,6 +147,8 @@ public class MainActivity extends AppWidgetProvider {
 
 
                     break;
+
+                    default:
 
 
             }

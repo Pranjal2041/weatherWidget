@@ -14,15 +14,12 @@ import java.util.Random;
 
 public class WidgetActivity extends AppWidgetProvider {
 
-    final String Day[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
 
-    final String Months[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
 
     public static final String MyPREFERENCES = "MyPref" ;
 
     SharedPreferences sharedpreferences;
-    String[] themes={"Pixel","OnePlus-1","OnePlus-2"};
 
 
 
@@ -54,7 +51,7 @@ public class WidgetActivity extends AppWidgetProvider {
         //}*/
 
      String theme="";
-
+    Constants constants=new Constants();
 
 
 
@@ -67,7 +64,7 @@ public class WidgetActivity extends AppWidgetProvider {
         {
             SharedPreferences.Editor editor = sharedpreferences.edit();
 
-            editor.putString("Theme",themes[0]);
+            editor.putString("Theme",Constants.themes[0]);
             editor.apply();
             theme="Pixel";
         }
@@ -89,11 +86,11 @@ public class WidgetActivity extends AppWidgetProvider {
 
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.pixel_widget);
-                    date.setTextViewText(R.id.textView, getDate());
+                    date.setTextViewText(R.id.textView, constants.getDate());
 
                     RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
                             R.layout.pixel_widget);
-                    remoteViews2.setTextViewText(R.id.textView3, getTemp());
+                    remoteViews2.setTextViewText(R.id.textView3, constants.getTemp());
 
                     Intent intent = new Intent(context, WidgetActivity.class);
                     intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);                         //Source Android Authority
@@ -101,6 +98,8 @@ public class WidgetActivity extends AppWidgetProvider {
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
                             0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     date.setOnClickPendingIntent(R.id.textView, pendingIntent);
+
+
                     appWidgetManager.updateAppWidget(widgetId, date);
                     appWidgetManager.updateAppWidget(widgetId, remoteViews2);
 
@@ -116,8 +115,8 @@ public class WidgetActivity extends AppWidgetProvider {
 
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.op_v1_widget);
-                    date.setTextViewText(R.id.onePlusDate, getDate());
-                    temp.setTextViewText(R.id.onePlusV1Temp,getTemp());
+                    date.setTextViewText(R.id.onePlusDate, constants.getDate());
+                    temp.setTextViewText(R.id.onePlusV1Temp,constants.getTemp());
 
 
                     //date.setTextColor(R.id.onePlusDate,);
@@ -137,8 +136,8 @@ public class WidgetActivity extends AppWidgetProvider {
 
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.op_v2_widget);
-                    date.setTextViewText(R.id.onePlusV2Date, getDateShort());
-                    temp.setTextViewText(R.id.onePlusV2Temp,getTemp());
+                    date.setTextViewText(R.id.onePlusV2Date, constants.getDateShort());
+                    temp.setTextViewText(R.id.onePlusV2Temp,constants.getTemp());
                     //date.setTextColor(R.id.onePlusDate,);
 
 
@@ -162,31 +161,7 @@ public class WidgetActivity extends AppWidgetProvider {
     }
 
 
-    String getDateShort()
-    {
-        Calendar calendar = Calendar.getInstance();
-        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[calendar.get(Calendar.DAY_OF_WEEK)].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
-        return date;
 
-
-
-    }
-
-    String getDate()
-    {
-        Calendar calendar = Calendar.getInstance();
-        String date = Day[calendar.get(Calendar.DAY_OF_WEEK)] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
-        return date;
-
-    }
-
-    String getTemp()
-    {
-
-        String temp = (new Random().nextInt(80) - 30) + " °C";
-        return temp;
-
-    }
 
 
 

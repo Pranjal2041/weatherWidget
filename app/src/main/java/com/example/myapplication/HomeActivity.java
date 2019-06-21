@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.app.FragmentManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -112,7 +112,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         editor.putString("Theme",themes[position]);
         editor.commit();
         Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
-updateWidget();
+        updateFragment();
+        updateWidget();
+
+
+
 
 
 
@@ -133,6 +137,17 @@ updateWidget();
                 .getAppWidgetIds(new ComponentName(getApplication(), WidgetActivity.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
+
+    }
+
+    void updateFragment()
+    {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home,new LM_Fragment());
+
+        fragmentTransaction.commit();
 
     }
 

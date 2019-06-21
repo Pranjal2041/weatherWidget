@@ -7,43 +7,50 @@
     android:transitionGroup="true"
     tools:context=".WidgetActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@android:style/Widget.Holo.Light.TextView.SpinnerItem"
+
+    <RelativeLayout
+        android:id="@+id/preview_container"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="true"
-        android:fontFamily="@font/googlesans_regular"
-        android:text="Weather"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:layout_centerInParent="true">
 
-    <TextView
-        android:id="@+id/textView3"
-        style="@android:style/Widget.TextView.SpinnerItem"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView"
+            style="@android:style/Widget.Holo.Light.TextView.SpinnerItem"
+            android:layout_width="wrap_content"
 
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/googlesans_regular"
+            android:text="Weather"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textView"
-        android:layout_toEndOf="@id/imageView"
-        android:fontFamily="@font/googlesans_regular"
-        android:shadowColor="#0277BD"
-        android:text="Weather"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="48dp"
-        android:layout_height="41dp"
-        android:layout_alignTop="@id/textView"
-        android:layout_toRightOf="@id/textView"
-        android:src="@drawable/ic_sunny_cloudy" />
+        <TextView
+            android:id="@+id/textView3"
+            style="@android:style/Widget.TextView.SpinnerItem"
+            android:layout_width="wrap_content"
 
 
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textView"
+            android:layout_toEndOf="@id/imageView"
+            android:fontFamily="@font/googlesans_regular"
+            android:shadowColor="#0277BD"
+            android:text="Weather"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="48dp"
+            android:layout_height="41dp"
+            android:layout_alignTop="@id/textView"
+            android:layout_toRightOf="@id/textView"
+            android:src="@drawable/ic_sunny_cloudy" />
+
+
+    </RelativeLayout>
 </RelativeLayout>

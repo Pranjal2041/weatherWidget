@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
     android:layout_width="match_parent"
@@ -6,11 +7,26 @@
     android:background="#0277BD"
     tools:context=".HomeActivity">
 
-    <Spinner
-        android:id="@+id/simpleSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="93dp" />
 
+    <ScrollView
+        android:id="@+id/scroll_contain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linear_home">
 
+        <Spinner
+            android:id="@+id/simpleSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="93dp" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linear_home"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/pixel_wallpaper">
+    </LinearLayout>
 </RelativeLayout>

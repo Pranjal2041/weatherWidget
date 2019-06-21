@@ -8,27 +8,31 @@
     tools:context=".WidgetActivity">
 
 
-    <TextView
-        android:id="@+id/onePlusV2Date"
+    <RelativeLayout
+        android:id="@+id/preview_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="true"
+        <TextView
+            android:id="@+id/onePlusV2Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/opslate_bold"
-        android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/onePlusV2Temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/onePlusV2Date"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/opslate_bold"
-        android:textSize="42sp" />
+            android:fontFamily="@font/opslate_bold"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/onePlusV2Temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/onePlusV2Date"
+            android:fontFamily="@font/opslate_bold"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="42sp" />
+    </RelativeLayout>
 </RelativeLayout>

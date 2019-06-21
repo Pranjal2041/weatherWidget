@@ -138,18 +138,18 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
 
-    }
+    }//updateWidget
 
     void updateFragment()
     {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.home,new LM_Fragment());
+        fragmentTransaction.replace(R.id.linear_home,new LM_Fragment());
 
         fragmentTransaction.commit();
 
-    }
+    }//updateFragment
 
 
 
@@ -158,4 +158,4 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-}
+}//class

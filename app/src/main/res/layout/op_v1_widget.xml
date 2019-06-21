@@ -7,57 +7,60 @@
     android:transitionGroup="true"
     tools:context=".WidgetActivity">
 
-    <TextClock
-        android:id="@+id/digitalclock"
+    <RelativeLayout
+        android:id="@+id/preview_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_centerInParent="false"
-        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true">
 
 
-        android:fontFamily="@font/opslate_regular"
-        android:text="df"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp" />
+        <TextClock
+            android:id="@+id/digitalclock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opslate_regular"
+            android:text="df"
+            android:textColor="#FFFFFF"
+            android:textSize="48sp" />
 
 
-    <TextView
-        android:id="@+id/onePlusDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/digitalclock"
-        android:layout_alignBottom="@id/digitalclock"
-        android:layout_alignParentBottom="false"
-        android:layout_marginBottom="-34dp"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/opslate_thin"
-        android:textSize="30sp" />
+        <TextView
+            android:id="@+id/onePlusDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/digitalclock"
+            android:layout_alignBottom="@id/digitalclock"
+            android:layout_alignParentBottom="false"
+            android:layout_marginBottom="-34dp"
+            android:fontFamily="@font/opslate_thin"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_below="@id/onePlusDate"
-        android:layout_alignLeft="@id/onePlusDate"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/ic_sunny_cloudy" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/onePlusDate"
+            android:layout_alignLeft="@id/onePlusDate"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/ic_sunny_cloudy" />
 
-    <TextView
-        android:id="@+id/onePlusV1Temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/onePlusDate"
-        android:layout_alignTop="@id/imageView2"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="2dp"
-        android:layout_toRightOf="@id/imageView2"
-        android:fontFamily="@font/opslate_thin"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/onePlusV1Temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/onePlusDate"
+            android:layout_alignTop="@id/imageView2"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/imageView2"
+            android:fontFamily="@font/opslate_thin"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </RelativeLayout>
 </RelativeLayout>
 

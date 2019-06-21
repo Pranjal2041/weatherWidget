@@ -16,7 +16,7 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="false"
         android:layout_centerVertical="true"
-        android:fontFamily="@font/googlesans_bold"
+        android:fontFamily="@font/googlesans_regular"
         android:text="Weather"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/textView"
         android:layout_toEndOf="@id/imageView"
-        android:fontFamily="@font/googlesans_bold"
+        android:fontFamily="@font/googlesans_regular"
         android:shadowColor="#0277BD"
         android:text="Weather"
         android:textColor="#FFFFFF"
@@ -42,7 +42,7 @@
         android:layout_height="41dp"
         android:layout_alignTop="@id/textView"
         android:layout_toRightOf="@id/textView"
-        android:src="@drawable/clouds" />
+        android:src="@drawable/ic_sunny_cloudy" />
 
 
 

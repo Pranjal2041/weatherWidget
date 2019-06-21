@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.FragmentManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,6 +10,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,10 +20,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import static com.example.myapplication.Constants.themes;
+
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    String[] themes={"Pixel","OnePlus-1","OnePlus-2"};
 
     public static final String MyPREFERENCES = "MyPref" ;
 
@@ -30,9 +34,25 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -70,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         }
 
 
-        spinner.setSelection(item);
+       spinner.setSelection(item);
 
 
 
@@ -92,7 +112,19 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         editor.putString("Theme",themes[position]);
         editor.commit();
         Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
+updateWidget();
 
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Toast.makeText(this, "Nothing is selected", Toast.LENGTH_SHORT).show();
+    }
+
+    void updateWidget()
+    {
         Intent intent = new Intent(this, WidgetActivity.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -101,12 +133,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 .getAppWidgetIds(new ComponentName(getApplication(), WidgetActivity.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(intent);
-        Toast.makeText(this, "Yes", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        Toast.makeText(this, "Nothing is selected", Toast.LENGTH_SHORT).show();
     }
 
 

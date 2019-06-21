@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static com.example.myapplication.HomeActivity.MyPREFERENCES;
@@ -24,20 +25,24 @@ public class LM_Fragment extends Fragment {
         SharedPreferences sharedpreferences=this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String temp=sharedpreferences.getString("Theme","");
 
-        Fragment frg = null;
-        frg = this.getActivity().getSupportFragmentManager().findFragmentById(R.id.frag1);
-        final FragmentTransaction ft = this.getActivity().getSupportFragmentManager().beginTransaction();
-        ft.detach(frg);
-        ft.attach(frg);
-        ft.commit();
+        View view;
+
 
 
 
         if(temp.equals(Constants.themes[1]))
-            return inflater.inflate(R.layout.op_v1_widget, container, false);
+            view= inflater.inflate(R.layout.op_v1_widget, container, false);
         else if(temp.equals(Constants.themes[2]))
-            return inflater.inflate(R.layout.op_v2_widget, container, false);
-        return inflater.inflate(R.layout.pixel_widget, container, false);
+            view= inflater.inflate(R.layout.op_v2_widget, container, false);
+        else
+            view=inflater.inflate(R.layout.pixel_widget, container, false);
+
+        Constants constants=new Constants();
+        constants.modifyUI(view,temp);
+
+
+
+        return view;
     }
 
 

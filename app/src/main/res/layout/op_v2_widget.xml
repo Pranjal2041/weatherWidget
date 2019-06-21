@@ -12,6 +12,11 @@
         android:id="@+id/onePlusV2Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/opslate_bold"

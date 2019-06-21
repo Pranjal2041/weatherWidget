@@ -11,6 +11,12 @@
         android:id="@+id/digitalclock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="true"
+
+
         android:fontFamily="@font/opslate_regular"
         android:text="df"
         android:textColor="#FFFFFF"

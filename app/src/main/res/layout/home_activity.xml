@@ -2,13 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WidgetActivity">
+    android:background="#0277BD"
+    tools:context=".HomeActivity">
 
     <Spinner
         android:id="@+id/simpleSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="93dp" />
+
+    <fragment
+        android:id="@+id/frag1"
+        class="com.example.myapplication.LM_Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="559dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="172dp" />
 
 </RelativeLayout>

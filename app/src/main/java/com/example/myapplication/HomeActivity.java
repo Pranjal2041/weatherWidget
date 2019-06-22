@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.home_activity);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -94,15 +94,15 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+    } //onCreate
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -145,7 +145,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.linear_home,new LM_Fragment());
+        fragmentTransaction.replace(R.id.preview_home,new LM_Fragment());
 
         fragmentTransaction.commit();
 

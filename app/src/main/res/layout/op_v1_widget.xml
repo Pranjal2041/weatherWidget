@@ -8,6 +8,7 @@
     tools:context=".WidgetActivity">
 
     <RelativeLayout
+        android:layout_marginLeft="20dp"
         android:id="@+id/preview_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

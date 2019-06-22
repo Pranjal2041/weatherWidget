@@ -92,7 +92,7 @@ public class Constants  {
     String getDateShort()
     {
         Calendar calendar = Calendar.getInstance();
-        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[calendar.get(Calendar.DAY_OF_WEEK)].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
+        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[(calendar.get(Calendar.DAY_OF_WEEK)-2)%7].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
         return date;
 
 
@@ -102,7 +102,7 @@ public class Constants  {
     String getDate()
     {
         Calendar calendar = Calendar.getInstance();
-        String date = Day[calendar.get(Calendar.DAY_OF_WEEK)] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
+        String date = Day[(calendar.get(Calendar.DAY_OF_WEEK)-2)%7] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
         return date;
 
     }

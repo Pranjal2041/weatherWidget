@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,31 +26,21 @@ import static com.example.myapplication.Constants.themes;
 
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-
-
+    private static final String TAG = "HomeActivity";
+    // shared pref
     public static final String MyPREFERENCES = "MyPref" ;
-
     SharedPreferences sharedpreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.home_activity);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        //make Transparent Status bar
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        // Transparent Status bar @Salazar
+        Window window = getWindow();
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
 
 
 
@@ -66,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         String temp="";
         try {
             temp = sharedpreferences.getString("Theme", "");
-            Toast.makeText(this, "temp", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "temp", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
@@ -102,20 +93,14 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getApplicationContext(), themes[position], Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), themes[position], Toast.LENGTH_LONG).show();
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
         editor.putString("Theme",themes[position]);
         editor.commit();
-        Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
         updateFragment();
         updateWidget();
-
-
-
-
-
-
     }
 
     @Override
@@ -146,12 +131,5 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         fragmentTransaction.commit();
 
     }//updateFragment
-
-
-
-
-
-
-
 
 }//class

@@ -58,7 +58,7 @@ public class WidgetActivity extends AppWidgetProvider {
          sharedpreferences=context.getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE);
         try {
              theme = sharedpreferences.getString("Theme", "");
-            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
@@ -69,7 +69,7 @@ public class WidgetActivity extends AppWidgetProvider {
             theme="Pixel";
         }
 
-        Toast.makeText(context, "Current theme is "+theme, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Current theme is "+theme, Toast.LENGTH_SHORT).show();
         RemoteViews date;
         RemoteViews temp;
 

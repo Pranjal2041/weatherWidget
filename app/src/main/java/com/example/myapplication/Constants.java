@@ -17,8 +17,8 @@ import static com.example.myapplication.HomeActivity.MyPREFERENCES;
 
 public class Constants  {
 
-
-    final String Day[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};        //  FOR
+    private static final String TAG = "Constants";
+    final String Day[]={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};        //  FOR
 
     final String Months[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};    // WIDGET ACTIVITY
 
@@ -92,7 +92,7 @@ public class Constants  {
     String getDateShort()
     {
         Calendar calendar = Calendar.getInstance();
-        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[(calendar.get(Calendar.DAY_OF_WEEK)-2)%7].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
+        String date = Months[calendar.get(Calendar.MONTH)].toUpperCase()+" "+ calendar.get(Calendar.DATE)+", "+Day[(calendar.get(Calendar.DAY_OF_WEEK)-1)].substring(0,3).toUpperCase() ;//+calendar.get(Calendar.YEAR);
         return date;
 
 
@@ -102,7 +102,7 @@ public class Constants  {
     String getDate()
     {
         Calendar calendar = Calendar.getInstance();
-        String date = Day[(calendar.get(Calendar.DAY_OF_WEEK)-2)%7] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
+        String date = Day[(calendar.get(Calendar.DAY_OF_WEEK)-1)] + ", " + calendar.get(Calendar.DATE) + "  " + Months[calendar.get(Calendar.MONTH)];//+calendar.get(Calendar.YEAR);
         return date;
 
     }

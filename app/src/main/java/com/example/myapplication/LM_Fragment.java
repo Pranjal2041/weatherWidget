@@ -1,19 +1,12 @@
 package com.example.myapplication;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import static com.example.myapplication.HomeActivity.MyPREFERENCES;
 
@@ -27,9 +20,7 @@ public class LM_Fragment extends Fragment {
 
         View view;
 
-
-
-
+        // infalte widget preview
         if(temp.equals(Constants.themes[1]))
             view= inflater.inflate(R.layout.op_v1_widget, container, false);
         else if(temp.equals(Constants.themes[2]))
@@ -43,8 +34,5 @@ public class LM_Fragment extends Fragment {
 
 
         return view;
-    }
-
-
-
-}
+    }// onCreateView
+}// class

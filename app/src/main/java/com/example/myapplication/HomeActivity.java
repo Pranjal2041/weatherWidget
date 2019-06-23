@@ -12,6 +12,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +23,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.myapplication.Constants.themes;
 
@@ -71,6 +81,19 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+
+        List<RecyclerData> list = getData();
+
+        RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recycler);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(list,getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL,false));
+
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
+
+
         Spinner spinner=(Spinner)findViewById(R.id.simpleSpinner);
         spinner.setOnItemSelectedListener(this);
 
@@ -99,7 +122,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         editor.putString("Theme",themes[position]);
         editor.commit();
 //        Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
-        updateFragment();
+        //updateFragment();
         updateWidget();
     }
 
@@ -126,10 +149,23 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.preview_home,new LM_Fragment());
+        fragmentTransaction.replace(R.id.cards,new LM_Fragment());
 
         fragmentTransaction.commit();
 
     }//updateFragment
+
+
+    private List<RecyclerData> getData()
+    {
+
+        List<RecyclerData> list = new ArrayList<>();
+        list.add(new RecyclerData(0));
+        list.add(new RecyclerData(1));
+        list.add(new RecyclerData(2));
+
+
+        return list;
+    }
 
 }//class

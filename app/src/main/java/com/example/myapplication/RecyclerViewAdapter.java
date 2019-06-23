@@ -26,7 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     {
         this.list = list;
         this.context = context;
-    }
+    }// constructor
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -70,11 +70,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
             new Constants().modifyUI(recyclerViewHolder.views[i],Constants.themes[i]);
 
-    }
+    }// onBindViewHolder
 
 
     @Override
     public int getItemCount() {
         return list.size();
     }
-}
+}// class

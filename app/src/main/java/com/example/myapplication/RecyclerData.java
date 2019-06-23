@@ -1,11 +1,11 @@
 package com.example.myapplication;
 
+/**
+ * Data type for list
+ */
 public class RecyclerData {
 
-    int position;
+    RecyclerData() {
 
-    RecyclerData(int i) {
-        position = i;
-    }
-
+    }// constructor
 }// class

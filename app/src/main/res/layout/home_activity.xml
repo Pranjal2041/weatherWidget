@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/recycler_ll">
-        <include layout="@layout/m_editWidget"/>
+        <include layout="@layout/m_editwidget"/>
     </ScrollView>
 
     <!--..........................PART 2.........................................-->

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.view.View;
@@ -69,9 +70,9 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         RecyclerViewAdapter adapter=new RecyclerViewAdapter(list,getApplication());
         recyclerView.setAdapter(adapter);
         // layoutManager
-        recyclerView.setLayoutManager(new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setLayoutManager(new CustomLinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL,false));
         // Scroll Snap Helper
-        SnapHelper snapHelper = new LinearSnapHelper();
+        SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
         /* end recyclerView*/
 

@@ -24,7 +24,6 @@
         android:id="@+id/recycler_ll"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:backgroundTint="#333"
         android:layout_above="@+id/card_bottomBar"
         android:background="@drawable/bg1">
         <android.support.v7.widget.RecyclerView

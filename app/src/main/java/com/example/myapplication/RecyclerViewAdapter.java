@@ -62,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public void onBindViewHolder(RecyclerViewHolder recyclerViewHolder, int i) {
 
-            for(int j=0;j<3;j++)
+            for(int j=0;j<recyclerViewHolder.views.length;j++)
             {
                 recyclerViewHolder.views[j].setVisibility(View.GONE);
             }

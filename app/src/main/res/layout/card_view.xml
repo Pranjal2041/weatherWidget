@@ -4,9 +4,11 @@
     android:id="@+id/cards"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="20dp">
 
@@ -14,7 +16,7 @@
         android:id="@+id/cards_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pixel_wallpaper"
+        android:background="@drawable/pixel_wallpaper2"
         android:orientation="horizontal">
 
         <include

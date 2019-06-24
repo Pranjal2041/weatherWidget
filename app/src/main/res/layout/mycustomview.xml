@@ -17,6 +17,7 @@
             android:src="@mipmap/ic_launcher_round"/>
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
 
         <Switch
             android:id="@+id/switch1"
+            android:theme="@style/SCBSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/tv1"
@@ -46,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            app:backgroundTint="@color/yellowAccent"
             app:srcCompat="?attr/actionModeCloseDrawable" />
 
     </RelativeLayout>

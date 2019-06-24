@@ -23,6 +23,7 @@
                 <!-- Rivedi effetto ripple -->
 
                 <ImageButton
+                    android:backgroundTint="#72A2C0"
                     android:id="@+id/icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
                     android:maxLines="1"
                     android:maxLength="39"
                     android:layout_toEndOf="@+id/icon"
-                    android:textColor="@android:color/primary_text_light" />
+                    android:textColor="#72A2C0" />
 
                 <ImageButton
                     android:id="@+id/arrow"

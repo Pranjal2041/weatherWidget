@@ -40,16 +40,16 @@
             android:layout_marginTop="150dp"
             android:text="Switch" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_marginBottom="20dp"
-            android:id="@+id/floatingActionButton"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:backgroundTint="@color/yellowAccent"
-            app:srcCompat="?attr/actionModeCloseDrawable" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:id="@+id/floatingActionButton"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:clickable="true"-->
+            <!--app:backgroundTint="@color/yellowAccent"-->
+            <!--app:srcCompat="?attr/actionModeCloseDrawable" />-->
 
     </RelativeLayout>
 

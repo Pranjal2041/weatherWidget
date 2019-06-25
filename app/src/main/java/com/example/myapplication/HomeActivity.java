@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -127,6 +129,16 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         }// for
         spinner.setSelection(item);
 
+        // apply widget change when response on FAB click @Salazar
+        FloatingActionButton fab = findViewById(R.id.apply_widget);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                updateWidget();
+                Snackbar.make(view, "Widget Applied", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }// onClick()
+        });// setOnClickListener
     }// onCreate
 
     // function to animate appBar menu icon @Salazar

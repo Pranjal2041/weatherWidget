@@ -1,10 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         Log.d(TAG, "onCreateViewHolder: "+i);
         // Inflate the layout
 
-        View photoView = inflater.inflate(R.layout.card_view,
+        View photoView = inflater.inflate(R.layout.widget_card_container,
                 viewGroup, false);
 
         /*LM_Fragment.i=i;*/

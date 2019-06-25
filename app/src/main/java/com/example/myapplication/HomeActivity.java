@@ -6,20 +6,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
@@ -48,6 +43,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     private Handler menuAnimationHandler = new MenuAnimationHandler();
     private View.OnClickListener onMenuClickListener;;
     private ImageView iconMenu;
+    DrawerLayout drawerLayout;
     // shared pref
     public static final String MyPREFERENCES = "MyPref";
     SharedPreferences sharedpreferences;
@@ -56,9 +52,10 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.home_with_navbar);
 
         // AppBar @Salazar
+        drawerLayout = findViewById(R.id.drawer_layout);
         iconMenu = (ImageView) findViewById(R.id.ap_ic_menu);
         iconMenu.setImageDrawable(AnimatedVectorDrawableCompat.create(this, R.drawable.ab_ic_menu_animated));
         menuAnimationHandler.sendEmptyMessageDelayed(MESSAGE_ANIMATION_START, DELAYT_BEFORE_FIRST_MENU_ANIMATION);

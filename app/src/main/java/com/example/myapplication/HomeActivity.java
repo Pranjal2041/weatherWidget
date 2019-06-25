@@ -94,12 +94,12 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 Toast.makeText(getBaseContext(), actionItem.getText()+" clicked", Toast.LENGTH_LONG).show();
             }
         });
-//        bar.setOnMenuClickedListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                drawerLayout.openDrawer(Gravity.START);
-//            }
-//        });
+        /*bar.setOnMenuClickedListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.START);
+            }
+        });*/
 
         bar.displayHomeAsUpEnabled(false);
 

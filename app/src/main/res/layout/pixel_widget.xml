@@ -18,7 +18,6 @@
             android:id="@+id/textView"
             style="@android:style/Widget.Holo.Light.TextView.SpinnerItem"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_alignWithParentIfMissing="false"
             android:layout_centerInParent="false"
@@ -32,18 +31,16 @@
             android:id="@+id/textView3"
             style="@android:style/Widget.TextView.SpinnerItem"
             android:layout_width="wrap_content"
-
-
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/textView"
+            android:layout_alignBottom="@id/imageView"
             android:layout_toEndOf="@id/imageView"
             android:fontFamily="@font/googlesans_regular"
-            android:shadowColor="#0277BD"
             android:text="Weather"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
         <ImageView
+            android:tint="@android:color/white"
             android:id="@+id/imageView"
             android:layout_width="48dp"
             android:layout_height="41dp"

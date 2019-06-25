@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         // layoutManager
         cllm = new CustomLinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(cllm);
-        // Scroll Snap Helper
+        // Page Snap Helper - scrollSnap
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
         // scrollListener
@@ -126,13 +126,13 @@ public class HomeActivity extends AppCompatActivity {
         });// addOnScrollListener
         /* end recyclerView*/
 
-        // apply widget change when response on FAB click @Salazar
-        FloatingActionButton fab = findViewById(R.id.apply_widget);
+        // apply widget on FAB press @Salazar
+        final FloatingActionButton fab = findViewById(R.id.apply_widget);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateWidget();
-                Snackbar.make(view, "Widget Applied", Snackbar.LENGTH_SHORT)
+                Snackbar.make(fab, "Widget Applied", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }// onClick()
         });// setOnClickListener
@@ -146,10 +146,12 @@ public class HomeActivity extends AppCompatActivity {
         }// if
     }// animateMenuImage
 
+    // get current postion on recyclerView scroll
     private int getCurrentItem() {
         return cllm.findFirstVisibleItemPosition();
     }// getCurrentItem()
 
+    // update home-screen widget
     void updateWidget() {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString("Theme", themes[position]);

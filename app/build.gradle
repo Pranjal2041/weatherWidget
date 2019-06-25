@@ -47,6 +47,4 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     // expandedCardView
     implementation project(path: ':libs:expandablecardview')
-    //AwesomeBar
-    implementation 'com.github.florent37:awesomebar:1.0.3'
 }

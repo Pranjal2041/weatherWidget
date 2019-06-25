@@ -4,34 +4,35 @@
     android:id="@+id/home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1"
+    android:background="@drawable/bg_dblue"
     tools:context=".HomeActivity">
-    <!--app:bar_primaryColor="#000000"-->
-    <!--app:bar_primaryColorDark="#000000"-->
-    <com.github.florent37.awesomebar.AwesomeBar
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
-        app:bar_actionsColor="@color/eo_green"
-        app:bar_primaryColor="@color/eo_dblue"
-        app:bar_primaryDarkColor="@color/eo_dblue"
-        android:background="@color/eo_dblue"
-        android:elevation="0dp"
-        android:id="@+id/bar"
+
+    <!--....................App Bar.............................................-->
+
+    <FrameLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="@dimen/bar_height"
+        tools:background="@color/eo_dblue">
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ap_ic_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/bar_icon_margin_left"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ab_ic_menu" />
+    </FrameLayout>
 
     <!--..........................PART 1.........................................-->
 
     <LinearLayout
-        android:layout_below="@+id/bar"
+        android:layout_below="@+id/appBar"
         android:layout_marginTop="0dp"
         android:id="@+id/recycler_ll"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:background="@drawable/bg1">
+        android:background="@drawable/bg_dblue">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
@@ -64,7 +65,7 @@
             android:id="@+id/layout_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg1"
+            android:background="@drawable/bg_dblue"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -73,16 +74,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/googlesans_bold"
-                    android:text="Weather Widget"
-                    android:textColor="@color/eo_yellow"
-                    android:textSize="25sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:fontFamily="@font/googlesans_bold"-->
+                    <!--android:text="Weather Widget"-->
+                    <!--android:textColor="@color/eo_yellow"-->
+                    <!--android:textSize="25sp" />-->
 
                 <Spinner
                     android:id="@+id/simpleSpinner"

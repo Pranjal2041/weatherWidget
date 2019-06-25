@@ -16,7 +16,7 @@
         android:id="@+id/cards_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/pixel_wallpaper2"
+        android:background="@drawable/wall_pixel2"
         android:orientation="horizontal">
 
         <include

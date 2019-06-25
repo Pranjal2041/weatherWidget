@@ -22,13 +22,6 @@
             android:layout_marginLeft="@dimen/bar_icon_margin_left"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ab_ic_menu" />
-        <Spinner
-            android:id="@+id/simpleSpinner"
-            android:layout_gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:textAlignment="textEnd" />
     </FrameLayout>
 
     <!--..........................PART 1.........................................-->

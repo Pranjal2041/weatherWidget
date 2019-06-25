@@ -24,31 +24,30 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.myapplication.Constants.themes;
 
-public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
+    DrawerLayout drawerLayout;
     // var for appBar @Salazar
     public static final int MESSAGE_ANIMATION_START = 1;
     public static final int DELAYT_BEFORE_FIRST_MENU_ANIMATION = 1000;
     public static final int DELAY_BETWEEN_MENU_ANIMATION_AND_CLICK = 800;
     private Handler menuAnimationHandler = new MenuAnimationHandler();
-    private View.OnClickListener onMenuClickListener;;
+    private View.OnClickListener onMenuClickListener;
     private ImageView iconMenu;
-    DrawerLayout drawerLayout;
     // shared pref
     public static final String MyPREFERENCES = "MyPref";
     SharedPreferences sharedpreferences;
+    // var for recyclerView @Salazar
+    CustomLinearLayoutManager cllm;
+    int position;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -86,8 +85,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         // Transparent Status bar @Salazar
-        Window window = getWindow();
         // window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getColor(R.color.eo_dblue));
 
@@ -110,32 +109,30 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(list, getApplication());
         recyclerView.setAdapter(adapter);
         // layoutManager
-        recyclerView.setLayoutManager(new CustomLinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        cllm = new CustomLinearLayoutManager(HomeActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(cllm);
         // Scroll Snap Helper
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
+        // scrollListener
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    position = getCurrentItem();
+                }//if
+            }// onScrollStateChanged
+        });// addOnScrollListener
         /* end recyclerView*/
-
-        // Spinner - select widget for home screen
-        Spinner spinner = (Spinner) findViewById(R.id.simpleSpinner);
-        spinner.setOnItemSelectedListener(this);
-        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, themes);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(aa);
-        int item = 0;
-        for (int i = 0; i < themes.length; i++) {
-            if (themes[i].equals(temp))
-                item = i;
-        }// for
-        spinner.setSelection(item);
 
         // apply widget change when response on FAB click @Salazar
         FloatingActionButton fab = findViewById(R.id.apply_widget);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                updateWidget();
-                Snackbar.make(view, "Widget Applied", Snackbar.LENGTH_LONG)
+                updateWidget();
+                Snackbar.make(view, "Widget Applied", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }// onClick()
         });// setOnClickListener
@@ -149,24 +146,14 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         }// if
     }// animateMenuImage
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // Toast.makeText(getApplicationContext(), themes[position], Toast.LENGTH_LONG).show();
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        editor.putString("Theme", themes[position]);
-        editor.commit();
-        // Toast.makeText(this, "edited theme", Toast.LENGTH_SHORT).show();
-        //updateFragment();
-        updateWidget();
-    }// spinner - onItemSelected
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        Toast.makeText(this, "Nothing is selected", Toast.LENGTH_SHORT).show();
-    }// spinner - onNothingSelected
+    private int getCurrentItem() {
+        return cllm.findFirstVisibleItemPosition();
+    }// getCurrentItem()
 
     void updateWidget() {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("Theme", themes[position]);
+        editor.commit();
         Intent intent = new Intent(this, WidgetActivity.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -203,16 +190,5 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             }// switch
         }// handleMessage
     }// class MenuAnimatorHandler
-
-    //    void updateFragment()
-    //    {
-    //
-    //        FragmentManager fragmentManager = getSupportFragmentManager();
-    //        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    //        fragmentTransaction.replace(R.id.cards,new LM_Fragment());
-    //
-    //        fragmentTransaction.commit();
-    //
-    //    }// updateFragment
 
 }//class

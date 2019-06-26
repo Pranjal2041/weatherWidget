@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<set xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--<objectAnimator-->
+        <!--android:duration="400"-->
+        <!--android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+        <!--android:propertyName="pathData"-->
+        <!--android:repeatMode="reverse"-->
+        <!--android:repeatCount="1"-->
+
+        <!--android:valueFrom="-->
+        <!--M3,10,h12,v-2,h-12,z,-->
+        <!--M3,14,h8,v-2,h-8,z"-->
+
+        <!--android:valueTo="-->
+        <!--M3,10,h12,v-2,h-12,z,-->
+        <!--M3,14,h12,v-2,h-12,z"-->
+
+        <!--android:valueType="pathType" />-->
+<!--</set>-->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:propertyName="pathData"
+        android:duration="1000"
+        android:repeatMode="reverse"
+        android:repeatCount="1"
+
+        android:valueFrom="M 6 9 L 18 9 L 18 7 L 6 7 Z M 6 13 L 18 13 L 18 11 L 6 11 Z M 6 17 L 18 17 L 18 15 L 6 15 Z"
+        android:valueTo="M 6 9 L 14 9 L 14 7 L 6 7 Z M 6 13 L 14 13 L 14 11 L 6 11 Z M 6 17 L 14 17 L 14 15 L 6 15 Z"
+        android:valueType="pathType"
+        android:interpolator="@android:anim/bounce_interpolator"/>
+</set>

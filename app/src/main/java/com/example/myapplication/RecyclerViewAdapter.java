@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         Log.d(TAG, "onCreateViewHolder: "+i);
         // Inflate the layout
 
-        View photoView = inflater.inflate(R.layout.widget_card_container,
+        View photoView = inflater.inflate(R.layout.widget_cardContainer,
                 viewGroup, false);
 
         /*LM_Fragment.i=i;*/

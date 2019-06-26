@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,35 +16,65 @@ public class Constants {
     final String[] Months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};    // WIDGET ACTIVITY
     protected static final String[] themes = {"Pixel", "OnePlus-1", "OnePlus-2"}; // widget theme list
 
+    String s_font_style[] = {"Theme Font", "Device Font", "Choose custom Font"};
+    int s_font_style_i;
+    String s_font_size[] = {"8", "10", "12", "14", "16", "18", "20", "24", "28", "36", "48", "60", "72"};
+    int s_font_size_i;
     protected void modifyUI(View view, String theme) {
-        TextView date;
-        TextView temp;
+        TextView date = null;
+        TextView temp = null;
 
         switch (theme) {
             case "Pixel"://Pixel 3
-                date = view.findViewById(R.id.textView);
-                temp = view.findViewById(R.id.textView3);
+                try {
+                    date = view.findViewById(R.id.textView);
+                    temp = view.findViewById(R.id.textView3);
 
-                date.setText(getDate() + " |");
-                temp.setText(getTemp());
+                    date.setText(getDate() + " |");
+                    temp.setText(getTemp());
+                } catch (Exception e) {
+                    Log.d(TAG, "modifyUI: error");
+                    e.printStackTrace();
+                }
                 break;
 
             case "OnePlus-1":   //onePlus v1
-                date = view.findViewById(R.id.onePlusDate);
-                temp = view.findViewById(R.id.onePlusV1Temp);
+                try {
+                    date = view.findViewById(R.id.onePlusDate);
+                    temp = view.findViewById(R.id.onePlusV1Temp);
 
-                date.setText(getDate());
-                temp.setText(getTemp());
+                    date.setText(getDate());
+                    temp.setText(getTemp());
+                } catch (Exception e) {
+                    Log.d(TAG, "modifyUI: error");
+                    e.printStackTrace();
+                }
                 break;
 
             case "OnePlus-2":   //onePlus v2
-                date = view.findViewById(R.id.onePlusV2Date);
-                temp = view.findViewById(R.id.onePlusV2Temp);
+                try {
+                    date = view.findViewById(R.id.onePlusV2Date);
+                    temp = view.findViewById(R.id.onePlusV2Temp);
 
-                date.setText(getDateShort());
-                temp.setText(getTemp());
+                    date.setText(getDateShort());
+                    temp.setText(getTemp());
+                } catch (Exception e) {
+                    Log.d(TAG, "modifyUI: error");
+                    e.printStackTrace();
+                }
                 break;
         }// switch
+
+        try {
+            if (date != null && temp != null) {
+                date.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
+                temp.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
+            }
+        } catch (NumberFormatException e) {
+            Log.d(TAG, "modifyUI: error");
+            e.printStackTrace();
+        }
+
     }// modifyUI()
 
     String getDateShort() {

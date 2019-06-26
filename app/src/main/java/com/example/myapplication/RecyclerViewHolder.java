@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 /** User defined data type
  * Stores View for widgets

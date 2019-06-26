@@ -20,18 +20,25 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.myapplication.Constants.themes;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "HomeActivity";
     DrawerLayout drawerLayout;
@@ -48,12 +55,14 @@ public class HomeActivity extends AppCompatActivity {
     // var for recyclerView @Salazar
     CustomLinearLayoutManager cllm;
     int position;
+    Constants c;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_with_navbar);
+        c=new Constants();
 
         // AppBar @Salazar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -125,6 +134,7 @@ public class HomeActivity extends AppCompatActivity {
             }// onScrollStateChanged
         });// addOnScrollListener
         /* end recyclerView*/
+        initialiseSpinners();
 
         // apply widget on FAB press @Salazar
         final FloatingActionButton fab = findViewById(R.id.apply_widget);
@@ -148,6 +158,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // get current postion on recyclerView scroll
     private int getCurrentItem() {
+        updatePreview(cllm.findFirstVisibleItemPosition());
         return cllm.findFirstVisibleItemPosition();
     }// getCurrentItem()
 
@@ -175,6 +186,43 @@ public class HomeActivity extends AppCompatActivity {
 
         return list;
     }// getData
+    // Spinner Functions
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        List<RecyclerData> list = getData();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(list, getApplication());
+        Log.d(TAG, "onItemSelected: ");
+
+        int parentId = parent.getId();
+        switch (parentId) {
+            case R.id.font_spinner:
+                c.s_font_style_i = position;
+                Log.d(TAG, "onItemSelected: ");
+                break;
+            case R.id.font_spinner2:
+                c.s_font_size_i = position;
+                Log.d(TAG, "onItemSelected: Size");
+                break;
+        }
+        updatePreview(this.position);
+    }
+
+    void updatePreview(int position)
+    {
+        if(position==1)
+            c.modifyUI(findViewById(R.id.include_op_v1), themes[1]);
+        else if(position==2)
+            c.modifyUI(findViewById(R.id.include_op_v2), themes[2]);
+        else if(position==0)
+            c.modifyUI(findViewById(R.id.include_pixel), themes[0]);
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     // handler for menu icon animation @Salazar
     class MenuAnimationHandler extends Handler {
@@ -192,5 +240,39 @@ public class HomeActivity extends AppCompatActivity {
             }// switch
         }// handleMessage
     }// class MenuAnimatorHandler
+
+    void getSpinnerPref()
+    {
+        int i=(findViewById(R.id.font_spinner).getVerticalScrollbarPosition());
+
+    }
+
+    void initialiseSpinners() {
+        Constants constants = new Constants();
+        Log.d(TAG, "initialiseSpinners: id=" + R.id.font_spinner);
+        {// font_spinner
+            Spinner spinner = (Spinner) findViewById(R.id.font_spinner);
+            spinner.setOnItemSelectedListener(this);
+            List spinner_list = new ArrayList();
+            spinner_list.addAll(Arrays.asList(constants.s_font_style));
+            SpinnerAdapter<String> dataAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, spinner_list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(dataAdapter);
+        }
+
+        {// font_size_spinner
+            Spinner spinner = (Spinner) findViewById(R.id.font_spinner2);
+            spinner.setOnItemSelectedListener(this);
+            List spinner_list = new ArrayList();
+            spinner_list.addAll(Arrays.asList(constants.s_font_size));
+            SpinnerAdapter<String> dataAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, spinner_list);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(dataAdapter);
+
+        }
+
+
+    }
+
 
 }//class

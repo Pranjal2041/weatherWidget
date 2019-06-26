@@ -103,7 +103,7 @@
             android:id="@+id/apply_widget"
             android:layout_gravity="bottom|center"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_done_black_24dp"
+            android:src="@drawable/anic_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </android.support.design.widget.CoordinatorLayout>

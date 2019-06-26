@@ -20,6 +20,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -35,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
     DrawerLayout drawerLayout;
+    FloatingActionButton fab;
     // var for appBar @Salazar
     public static final int MESSAGE_ANIMATION_START = 1;
     public static final int DELAYT_BEFORE_FIRST_MENU_ANIMATION = 1000;
@@ -127,22 +129,32 @@ public class HomeActivity extends AppCompatActivity {
         /* end recyclerView*/
 
         // apply widget on FAB press @Salazar
-        final FloatingActionButton fab = findViewById(R.id.apply_widget);
+        fab = findViewById(R.id.apply_widget);
+        fab.setImageDrawable(AnimatedVectorDrawableCompat.create(this, R.drawable.anic_done));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateWidget();
+                animateDoneImage();
                 Snackbar.make(fab, "Widget Applied", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }// onClick()
         });// setOnClickListener
     }// onCreate
 
+    // function to animate done icon in FAB @Salazar
+    public void animateDoneImage() {
+        final Drawable drawable = fab.getDrawable();
+        if (drawable instanceof AnimatedVectorDrawableCompat) {
+            ((AnimatedVectorDrawableCompat) drawable).start();
+        }
+    }
+
     // function to animate appBar menu icon @Salazar
     private void animateMenuImage() {
         final Drawable drawable = iconMenu.getDrawable();
         if (drawable instanceof AnimatedVectorDrawableCompat) {
-            ((AnimatedVectorDrawableCompat) iconMenu.getDrawable()).start();
+            ((AnimatedVectorDrawableCompat) drawable).start();
         }// if
     }// animateMenuImage
 

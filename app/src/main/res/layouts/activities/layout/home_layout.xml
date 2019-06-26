@@ -16,13 +16,13 @@
         tools:background="@color/eo_dblue">
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ab_ic_menu"
-            android:padding="6dp"
+            android:padding="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/bar_icon_margin_left"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/avd_anim_menu" />
+            app:srcCompat="@drawable/anic_menu" />
     </FrameLayout>
 
     <!--..........................PART 1.........................................-->

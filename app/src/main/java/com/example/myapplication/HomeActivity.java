@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         // AppBar @Salazar
         drawerLayout = findViewById(R.id.drawer_layout);
         iconMenu = (ImageView) findViewById(R.id.ab_ic_menu);
-        iconMenu.setImageDrawable(AnimatedVectorDrawableCompat.create(this, R.drawable.avd_anim_menu_animated));
+        iconMenu.setImageDrawable(AnimatedVectorDrawableCompat.create(this, R.drawable.anic_menu));
         menuAnimationHandler.sendEmptyMessageDelayed(MESSAGE_ANIMATION_START, DELAYT_BEFORE_FIRST_MENU_ANIMATION);
         iconMenu.setOnClickListener(new View.OnClickListener() {
             @Override

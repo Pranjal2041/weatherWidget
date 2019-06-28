@@ -25,9 +25,9 @@
             android:id="@+id/profile2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Passengers"
+            app:title="Clock Settings"
             app:icon="@drawable/ic_cloudy"
-            app:inner_view="@layout/mycustomview"
+            app:inner_view="@layout/m_clock_settings"
             app:expandOnClick="true"
             app:animationDuration="300"
             app:startExpanded="false"/>

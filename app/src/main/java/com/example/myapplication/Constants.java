@@ -20,14 +20,15 @@ public class Constants {
 
     String s_font_style[] = {"Theme Font", "Device Font", "Choose custom Font"};
     static int s_font_style_i;
-    String s_font_size[] = { "12", "14", "16", "18", "20", "24", "28","32", "36","40","44", "48"};
+    String s_font_size[] = {"12", "14", "16", "18", "20", "24", "28", "32", "36", "40", "44", "48"};
     static int s_font_size_i;
     static int s_color;
+    static boolean clock_format_24;
 
     protected void modifyUI(View view, String theme) {
         TextView date = null;
         TextView temp = null;
-
+        TextClock textClock = null;
         switch (theme) {
             case "Pixel"://Pixel 3
                 try {
@@ -46,6 +47,8 @@ public class Constants {
                 try {
                     date = view.findViewById(R.id.onePlusDate);
                     temp = view.findViewById(R.id.onePlusV1Temp);
+                    textClock = view.findViewById(R.id.digitalclock);
+
 
                     date.setText(getDate());
                     temp.setText(getTemp());
@@ -70,9 +73,19 @@ public class Constants {
         }// switch
 
         try {
+            if (textClock != null) {
+                textClock.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                Log.d(TAG, "modifyUI: clocked format 24=" + clock_format_24);
+                if (clock_format_24) {
+                    textClock.setFormat24Hour("kk:mm");
+                } else {
+                    textClock.setFormat24Hour("h:mm a");
+                    Log.d(TAG, "modifyUI: format 12hour");
+                }
+            }
             if (date != null && temp != null) {
-                    date.setTextColor(Color.rgb((s_color/256)/256,(s_color/256)%256,s_color%256));
-                    temp.setTextColor(Color.rgb((s_color/256)/256,(s_color/256)%256,s_color%256));
+                date.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                temp.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
                 date.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
                 temp.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
             }

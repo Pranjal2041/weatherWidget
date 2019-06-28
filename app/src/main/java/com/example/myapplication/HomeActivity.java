@@ -32,10 +32,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -184,7 +186,21 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });// setOnClickListener
 
+        //Toggle Button to switch clock format
+        ToggleButton toggleButton=findViewById(R.id.toggleButton);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d(TAG, "onCheckedChanged: checked="+isChecked);
+                if(isChecked)
+                    Constants.clock_format_24=true;
+                else
+                    Constants.clock_format_24=false;
+                updatePreview(getRecyclerViewPosition());
+            }
+        });
     }// onCreate
+
 
     // Returns recycler view position
     int getRecyclerViewPosition()

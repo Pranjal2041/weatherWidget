@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -17,9 +19,11 @@ public class Constants {
     protected static final String[] themes = {"Pixel", "OnePlus-1", "OnePlus-2"}; // widget theme list
 
     String s_font_style[] = {"Theme Font", "Device Font", "Choose custom Font"};
-    int s_font_style_i;
-    String s_font_size[] = {"8", "10", "12", "14", "16", "18", "20", "24", "28", "36", "48", "60", "72"};
-    int s_font_size_i;
+    static int s_font_style_i;
+    String s_font_size[] = { "12", "14", "16", "18", "20", "24", "28","32", "36","40","44", "48"};
+    static int s_font_size_i;
+    static int s_color;
+
     protected void modifyUI(View view, String theme) {
         TextView date = null;
         TextView temp = null;
@@ -67,6 +71,8 @@ public class Constants {
 
         try {
             if (date != null && temp != null) {
+                    date.setTextColor(Color.rgb((s_color/256)/256,(s_color/256)%256,s_color%256));
+                    temp.setTextColor(Color.rgb((s_color/256)/256,(s_color/256)%256,s_color%256));
                 date.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
                 temp.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
             }

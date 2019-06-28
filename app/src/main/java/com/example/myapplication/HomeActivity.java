@@ -4,13 +4,17 @@ import android.annotation.TargetApi;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
@@ -31,6 +35,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -146,7 +151,46 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                         .setAction("Action", null).show();
             }// onClick()
         });// setOnClickListener
+
+        // Open color dialog on FAB press
+        final FloatingActionButton fab_font_color=findViewById(R.id.font_colour_fab);
+        fab_font_color.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ColourDialog1 cd1=new ColourDialog1(HomeActivity.this);
+                cd1.show();
+                cd1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+
+                        if(ColourDialog1.color_dialog_type==1)
+                        {
+                        ColourDialog cd=new ColourDialog(HomeActivity.this);
+                        cd.show();
+                        cd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                fab_font_color.setBackgroundTintList(ColorStateList.valueOf(Color.rgb((Constants.s_color/256)/256,(Constants.s_color/256)%256,Constants.s_color%256)));
+                                updatePreview(getRecyclerViewPosition());
+                                ColourDialog1.color_dialog_type=0;
+                            }
+                        });}
+
+                    }
+                });
+
+
+            }
+        });// setOnClickListener
+
     }// onCreate
+
+    // Returns recycler view position
+    int getRecyclerViewPosition()
+    {
+        return this.position;
+    }
 
     // function to animate appBar menu icon @Salazar
     private void animateMenuImage() {
@@ -196,11 +240,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         int parentId = parent.getId();
         switch (parentId) {
             case R.id.font_spinner:
-                c.s_font_style_i = position;
+                Constants.s_font_style_i = position;
                 Log.d(TAG, "onItemSelected: ");
                 break;
             case R.id.font_spinner2:
-                c.s_font_size_i = position;
+                Constants.s_font_size_i = position;
                 Log.d(TAG, "onItemSelected: Size");
                 break;
         }
@@ -217,7 +261,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             c.modifyUI(findViewById(R.id.include_pixel), themes[0]);
 
 
-    }
+        }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -251,7 +295,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         Constants constants = new Constants();
         Log.d(TAG, "initialiseSpinners: id=" + R.id.font_spinner);
         {// font_spinner
-            Spinner spinner = (Spinner) findViewById(R.id.font_spinner);
+            Spinner spinner = findViewById(R.id.font_spinner);
             spinner.setOnItemSelectedListener(this);
             List spinner_list = new ArrayList();
             spinner_list.addAll(Arrays.asList(constants.s_font_style));

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="400dp"
+    android:layout_height="400dp">
+
+    <RelativeLayout
+        android:id="@+id/colour_preview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent">
+
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar_colour_red"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="45dp"
+        android:max="255" />
+    <TextView
+        android:id="@+id/seekBar_colour_red_text"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_width="30dp"
+        android:textSize="16sp"
+        android:layout_height="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="8dp"
+        android:text="255"
+
+        />
+
+
+    <SeekBar
+        android:id="@+id/seekBar_colour_green"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginStart="45dp"
+        android:max="255" />
+    <TextView
+        android:id="@+id/seekBar_colour_green_text"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_green_light"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginStart="8dp"
+        android:text="255"
+
+        />
+
+
+    <SeekBar
+        android:id="@+id/seekBar_colour_blue"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginStart="45dp"
+        android:max="255" />
+    <TextView
+        android:id="@+id/seekBar_colour_blue_text"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginStart="8dp"
+        android:text="255"
+
+        />
+
+</RelativeLayout>

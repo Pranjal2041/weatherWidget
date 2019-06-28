@@ -15,7 +15,7 @@
             android:id="@+id/profile1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Passengers"
+            app:title="Font Settings"
             app:icon="@drawable/ic_sunny"
             app:inner_view="@layout/m_font_settings"
             app:expandOnClick="true"

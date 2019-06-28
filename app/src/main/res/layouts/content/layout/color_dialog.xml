@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="600dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.rarepebble.colorpicker.ColorPickerView
+        android:id="@+id/color_picker"
+        android:layout_width="800dp"
+        android:layout_height="500dp"
+        android:title="selected_color_pref"
+        android:defaultValue="#f00"
+        app:colorpicker_showPreview="true"
+        app:colorpicker_showAlpha="false"
+        >
+
+    </com.rarepebble.colorpicker.ColorPickerView>
+
+    <Button
+        android:id="@+id/save_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="479dp"
+        android:text="Save" />
+
+</RelativeLayout>

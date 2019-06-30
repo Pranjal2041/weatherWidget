@@ -185,20 +185,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });// setOnClickListener
-
-        //Toggle Button to switch clock format
-        ToggleButton toggleButton=findViewById(R.id.toggleButton);
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d(TAG, "onCheckedChanged: checked="+isChecked);
-                if(isChecked)
-                    Constants.clock_format_24=true;
-                else
-                    Constants.clock_format_24=false;
-                updatePreview(getRecyclerViewPosition());
-            }
-        });
+        initialiseToggleButtons();
+        updatePreview(position);
     }// onCreate
 
 
@@ -331,6 +319,31 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         }
 
+    void initialiseToggleButtons()
+    {
+        //Toggle Button to switch clock format
+        ToggleButton toggleButton=findViewById(R.id.toggleButton);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d(TAG, "onCheckedChanged: checked="+isChecked);
+                Constants.clock_format_24 = isChecked;
+                updatePreview(getRecyclerViewPosition());
+            }
+        });
+
+        ToggleButton toggleButton_weather_unit=findViewById(R.id.temp_unit_toggleButton);
+        toggleButton_weather_unit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.d(TAG, "onCheckedChanged: checked="+isChecked);
+                if(isChecked)
+                    Constants.temp_unit=1;
+                else
+                    Constants.temp_unit=0;
+                updatePreview(getRecyclerViewPosition());
+            }
+        });
 
     }
 

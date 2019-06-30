@@ -24,6 +24,7 @@ public class Constants {
     static int s_font_size_i;
     static int s_color;
     static boolean clock_format_24;
+    static int temp_unit; // 0 for °C ; 1 for °F
 
     protected void modifyUI(View view, String theme) {
         TextView date = null;
@@ -109,7 +110,13 @@ public class Constants {
     }// getDate()
 
     String getTemp() {
-        String temp = (new Random().nextInt(80) - 30) + " °C";
+        String temp="";
+        if(temp_unit==0)
+            temp = (new Random().nextInt(80) - 30) + " °C";
+        else if(temp_unit==1)
+            temp=(new Random().nextInt(80) - 30) + " °F";
+
+
         return temp;
     }// getTemp
 }// class

@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -70,8 +71,17 @@ public class WidgetActivity extends AppWidgetProvider {
         }
 
 //        Toast.makeText(context, "Current theme is "+theme, Toast.LENGTH_SHORT).show();
-        RemoteViews date;
-        RemoteViews temp;
+        RemoteViews date=null;
+        RemoteViews temp=null;
+        RemoteViews clock_view;
+        int date_id=0;
+        int temp_id=0;
+        int s_color=sharedpreferences.getInt("Font Color", 0xFFFFFF);
+        int s_font_size_i=sharedpreferences.getInt("Font Size", 6);
+        Constants.temp_unit= sharedpreferences.getInt("Weather Unit", 0);
+
+
+
 
 
         for (int widgetId : appWidgetIds) {
@@ -83,14 +93,12 @@ public class WidgetActivity extends AppWidgetProvider {
 
 
 
-
+                    date_id=R.id.textView;
+                    temp_id=R.id.textView3;
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.pixel_widget);
-                    date.setTextViewText(R.id.textView, constants.getDate());
-
-                    RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(),
+                    temp = new RemoteViews(context.getPackageName(),
                             R.layout.pixel_widget);
-                    remoteViews2.setTextViewText(R.id.textView3, constants.getTemp());
 
                     Intent intent = new Intent(context, WidgetActivity.class);
                     intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);                         //Source Android Authority
@@ -100,14 +108,14 @@ public class WidgetActivity extends AppWidgetProvider {
                     date.setOnClickPendingIntent(R.id.textView, pendingIntent);
 
 
-                    appWidgetManager.updateAppWidget(widgetId, date);
-                    appWidgetManager.updateAppWidget(widgetId, remoteViews2);
 
                     break;
 
                 case "OnePlus-1":   //onePlus v1
 
-                    RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.op_v1_widget);
+                    date_id=R.id.onePlusDate;
+                    temp_id=R.id.onePlusV1Temp;
+                    clock_view = new RemoteViews(context.getPackageName(),R.layout.op_v1_widget);
                     temp = new RemoteViews(context.getPackageName(),R.layout.op_v1_widget);
 
 
@@ -115,16 +123,23 @@ public class WidgetActivity extends AppWidgetProvider {
 
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.op_v1_widget);
-                    date.setTextViewText(R.id.onePlusDate, constants.getDate());
-                    temp.setTextViewText(R.id.onePlusV1Temp,constants.getTemp());
+
 
 
                     //date.setTextColor(R.id.onePlusDate,);
 
+                    clock_view.setTextColor(R.id.digitalclock,Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                    /*if (Constants.clock_format_24) {
+                        textClock.setFormat24Hour("kk:mm");
+                    } else {
+                        textClock.setFormat24Hour("h:mm A");
+                    }*/
 
-                    appWidgetManager.updateAppWidget(widgetId,views);
-                    appWidgetManager.updateAppWidget(widgetId,date);
-                    appWidgetManager.updateAppWidget(widgetId,temp);
+
+
+                    appWidgetManager.updateAppWidget(widgetId,clock_view);
+
+
 
 
 
@@ -132,17 +147,12 @@ public class WidgetActivity extends AppWidgetProvider {
 
                 case "OnePlus-2":   //onePlus v2
 
+                    date_id=R.id.onePlusV2Date;
+                    temp_id=R.id.onePlusV2Temp;
                     temp = new RemoteViews(context.getPackageName(),R.layout.op_v2_widget);
 
                     date = new RemoteViews(context.getPackageName(),
                             R.layout.op_v2_widget);
-                    date.setTextViewText(R.id.onePlusV2Date, constants.getDateShort());
-                    temp.setTextViewText(R.id.onePlusV2Temp,constants.getTemp());
-                    //date.setTextColor(R.id.onePlusDate,);
-
-
-                    appWidgetManager.updateAppWidget(widgetId,temp);
-                    appWidgetManager.updateAppWidget(widgetId,date);
 
 
                     break;
@@ -150,9 +160,20 @@ public class WidgetActivity extends AppWidgetProvider {
                     default:
 
 
+            }// switch block
+
+
+            if(date!=null&&temp!=null) {
+                date.setTextViewText(date_id, constants.getDate());
+                temp.setTextViewText(temp_id, constants.getTemp());
+                date.setTextColor(date_id, Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                temp.setTextColor(temp_id, Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                date.setTextViewTextSize(date_id, 0, Float.parseFloat(Constants.s_font_size[s_font_size_i]));
+                temp.setTextViewTextSize(temp_id, 0, Float.parseFloat(Constants.s_font_size[s_font_size_i]));
+
+                appWidgetManager.updateAppWidget(widgetId, date);
+                appWidgetManager.updateAppWidget(widgetId, temp);
             }
-
-
 
 
         }

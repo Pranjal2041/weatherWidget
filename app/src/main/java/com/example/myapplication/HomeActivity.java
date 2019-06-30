@@ -43,6 +43,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.example.myapplication.Constants.s_font_size_i;
+import static com.example.myapplication.Constants.s_font_style_i;
 import static com.example.myapplication.Constants.themes;
 
 public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -105,18 +107,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getColor(R.color.eo_dblue));
-
-        // init SharedPreference
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String temp = "";
-        try {
-            temp = sharedpreferences.getString("Theme", "");
-        } catch (Exception e) {
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString("Theme", themes[0]);
-            editor.apply();
-            temp = themes[0];
-        }
+        loadPreferences();  // Initialise preferences
 
         /* init recyclerView */
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
@@ -148,6 +139,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateSharedPreferences();
                 updateWidget();
                 Snackbar.make(fab, "Widget Applied", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
@@ -212,9 +204,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
     // update home-screen widget
     void updateWidget() {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString("Theme", themes[position]);
-        editor.commit();
         Intent intent = new Intent(this, WidgetActivity.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         // Use an array and EXTRA_APPWIDGET_IDS instead of AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -225,6 +214,38 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         sendBroadcast(intent);
 
     }// updateWidget
+
+    void updateSharedPreferences()
+    {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString("Theme", themes[position]);
+        editor.putInt("Font Type",s_font_style_i);
+        editor.putInt("Font Size",Constants.s_font_size_i);
+        editor.putInt("Font Color",Constants.s_color);
+        editor.putInt("Weather Unit",Constants.temp_unit);
+        editor.putBoolean("Clock Format 24",Constants.clock_format_24);
+        editor.apply();
+
+    }
+
+    void loadPreferences()
+    {
+
+        // init SharedPreference
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String temp = "";
+        try {
+            temp = sharedpreferences.getString("Theme", "");
+            Constants.s_font_style_i= sharedpreferences.getInt("Font Type", 0);
+            Constants.s_font_size_i= sharedpreferences.getInt("Font Size", 6);
+            Constants.s_color= sharedpreferences.getInt("Font Color", 0xFFFFFF);
+            Constants.temp_unit= sharedpreferences.getInt("Weather Unit", 0);
+            Constants.clock_format_24= sharedpreferences.getBoolean("Clock Format 24", true);
+
+        } catch (Exception e) {
+            updateSharedPreferences();
+        }
+    }
 
     private List<RecyclerData> getData() {
         List<RecyclerData> list = new ArrayList<>();
@@ -306,6 +327,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             SpinnerAdapter<String> dataAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, spinner_list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(dataAdapter);
+            spinner.setSelection(s_font_style_i);
         }
 
         {// font_size_spinner
@@ -316,8 +338,12 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             SpinnerAdapter<String> dataAdapter = new SpinnerAdapter(this, android.R.layout.simple_spinner_item, spinner_list);
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(dataAdapter);
+            spinner.setSelection(s_font_size_i);
 
         }
+
+
+    }
 
     void initialiseToggleButtons()
     {
@@ -344,7 +370,6 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                 updatePreview(getRecyclerViewPosition());
             }
         });
-
     }
 
 

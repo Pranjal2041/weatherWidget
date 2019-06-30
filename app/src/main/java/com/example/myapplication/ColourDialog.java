@@ -39,7 +39,8 @@ public class ColourDialog extends Dialog implements android.view.View.OnClickLis
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.color_dialog);
         final ColorPickerView colorPickerView=findViewById(R.id.color_picker);
-        colorPickerView.setColor(PreferenceManager.getDefaultSharedPreferences(context).getInt("selected_color_pref", 0));
+        colorPickerView.setOriginalColor(Constants.s_color);
+        // colorPickerView.setColor(PreferenceManager.getDefaultSharedPreferences(context).getInt("selected_color_pref", 0));
         Button button=findViewById(R.id.save_color);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

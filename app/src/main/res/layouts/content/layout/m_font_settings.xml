@@ -63,7 +63,7 @@
                 android:id="@+id/font_colour_fab"
                 android:layout_width="93dp"
                 android:layout_height="66dp"
-                android:src="@drawable/baseline_color_lens_black_18dp">
+                android:src="@drawable/ic_color_lens_black_24dp">
 
             </android.support.design.widget.FloatingActionButton>
         </RelativeLayout>

@@ -20,10 +20,10 @@ public class Constants {
 
     String s_font_style[] = {"Theme Font", "Device Font", "Choose custom Font"};
     static int s_font_style_i;
-    String s_font_size[] = {"12", "14", "16", "18", "20", "24", "28", "32", "36", "40", "44", "48"};
-    static int s_font_size_i;
-    static int s_color;
-    static boolean clock_format_24;
+    static String s_font_size[] = {"12", "14", "16", "18", "20", "24", "28", "32", "36", "40", "44", "48"};
+    static int s_font_size_i=6;
+    static int s_color=0xFFFFFF;
+    static boolean clock_format_24=true;
     static int temp_unit; // 0 for °C ; 1 for °F
 
     protected void modifyUI(View view, String theme) {
@@ -76,12 +76,10 @@ public class Constants {
         try {
             if (textClock != null) {
                 textClock.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
-                Log.d(TAG, "modifyUI: clocked format 24=" + clock_format_24);
                 if (clock_format_24) {
                     textClock.setFormat24Hour("kk:mm");
                 } else {
-                    textClock.setFormat24Hour("h:mm a");
-                    Log.d(TAG, "modifyUI: format 12hour");
+                    textClock.setFormat24Hour("h:mm A");
                 }
             }
             if (date != null && temp != null) {

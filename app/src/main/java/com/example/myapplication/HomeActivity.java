@@ -148,6 +148,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Open color dialog on FAB press
         final FloatingActionButton fab_font_color=findViewById(R.id.font_colour_fab);
+        fab_font_color.setBackgroundTintList(ColorStateList.valueOf(Constants.s_color));
         fab_font_color.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +166,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
                         cd.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                                fab_font_color.setBackgroundTintList(ColorStateList.valueOf(Color.rgb((Constants.s_color/256)/256,(Constants.s_color/256)%256,Constants.s_color%256)));
+                                fab_font_color.setBackgroundTintList(ColorStateList.valueOf(Constants.s_color));
                                 updatePreview(getRecyclerViewPosition());
                                 ColourDialog1.color_dialog_type=0;
                             }

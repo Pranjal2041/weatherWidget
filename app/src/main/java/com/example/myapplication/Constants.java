@@ -75,7 +75,7 @@ public class Constants {
 
         try {
             if (textClock != null) {
-                textClock.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                textClock.setTextColor(s_color);
                 if (clock_format_24) {
                     textClock.setFormat24Hour("kk:mm");
                 } else {
@@ -83,8 +83,8 @@ public class Constants {
                 }
             }
             if (date != null && temp != null) {
-                date.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
-                temp.setTextColor(Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                date.setTextColor(s_color);
+                temp.setTextColor(s_color);
                 date.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
                 temp.setTextSize(Float.parseFloat(s_font_size[s_font_size_i]));
             }

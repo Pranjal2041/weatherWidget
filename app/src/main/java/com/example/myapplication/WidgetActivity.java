@@ -128,7 +128,7 @@ public class WidgetActivity extends AppWidgetProvider {
 
                     //date.setTextColor(R.id.onePlusDate,);
 
-                    clock_view.setTextColor(R.id.digitalclock,Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                    clock_view.setTextColor(R.id.digitalclock,s_color);
                     /*if (Constants.clock_format_24) {
                         textClock.setFormat24Hour("kk:mm");
                     } else {
@@ -166,8 +166,8 @@ public class WidgetActivity extends AppWidgetProvider {
             if(date!=null&&temp!=null) {
                 date.setTextViewText(date_id, constants.getDate());
                 temp.setTextViewText(temp_id, constants.getTemp());
-                date.setTextColor(date_id, Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
-                temp.setTextColor(temp_id, Color.rgb((s_color / 256) / 256, (s_color / 256) % 256, s_color % 256));
+                date.setTextColor(date_id, s_color);
+                temp.setTextColor(temp_id, s_color);
                 date.setTextViewTextSize(date_id, 0, Float.parseFloat(Constants.s_font_size[s_font_size_i]));
                 temp.setTextViewTextSize(temp_id, 0, Float.parseFloat(Constants.s_font_size[s_font_size_i]));
 

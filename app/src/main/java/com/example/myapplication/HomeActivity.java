@@ -8,13 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
@@ -27,16 +25,12 @@ import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -65,6 +59,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     CustomLinearLayoutManager cllm;
     int position;
     Constants c;
+    static Context context;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -72,6 +67,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_with_navbar);
         c=new Constants();
+        context=this;
 
         // AppBar @Salazar
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -224,6 +220,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         editor.putInt("Font Size",Constants.s_font_size_i);
         editor.putInt("Font Color",Constants.s_color);
         editor.putInt("Weather Unit",Constants.temp_unit);
+        editor.putFloat("Current Temperature",Constants.current_temp);
         editor.putBoolean("Clock Format 24",Constants.clock_format_24);
         editor.apply();
 
@@ -242,6 +239,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             Constants.s_color= sharedpreferences.getInt("Font Color", 0xFFFFFF);
             Constants.temp_unit= sharedpreferences.getInt("Weather Unit", 0);
             Constants.clock_format_24= sharedpreferences.getBoolean("Clock Format 24", true);
+            Constants.current_temp=sharedpreferences.getFloat("Current Temperature",25);
 
         } catch (Exception e) {
             updateSharedPreferences();
